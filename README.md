@@ -1,6 +1,6 @@
 # Express Book Reviews Application
 
-This project is part of your Node.js learning journey and demonstrates
+This project is part of my Node.js learning journey and demonstrates
 how to create REST APIs using **Express.js**, **Axios**, and **Promises
 / Async-Await**.\
 It also includes tasks such as fetching books by **ISBN**, **Author**,
@@ -20,7 +20,7 @@ The application exposes REST API endpoints for:
 -   Logging in users\
 -   Managing book reviews
 
-You implemented asynchronous versions using **Axios** and **Promises**,
+I implemented asynchronous versions using **Axios** and **Promises**,
 especially for:
 
 ✔ Fetch book details by **Author**\
@@ -135,18 +135,6 @@ You can test APIs using:
 -   **Postman**
 -   **Thunder Client (VS Code)**
 -   **Browser (GET requests only)**
-
-------------------------------------------------------------------------
-
-## 📜 Features Completed from Assignment
-
-  Task      Description                  Status
-  --------- ---------------------------- --------
-  Task 4    Get books by title           ✔ Done
-  Task 10   Promise-based ISBN fetch     ✔ Done
-  Task 11   Promise-based Author fetch   ✔ Done
-  Task 12   Promise-based Title fetch    ✔ Done
-  Task 13   Async-Await using Axios      ✔ Done
 
 ------------------------------------------------------------------------
 
