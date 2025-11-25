@@ -26,46 +26,47 @@ public_users.post("/register", (req, res) => {
   return res.send("User registered successfully");
 });
 
-// Get the book list available in the shop
-public_users.get("/", async (req, res) => {
-  //Write your code here
-  try {
-    //async operation with promise
-    const getBooks = () => {
-      return new Promise((resolve, reject) => {
-        resolve(books);
-      });
-    };
 
-    //Wait for the promise
-    const response = await getBooks();
-    res.send(JSON.stringify(response, null, 4));
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
+// Get the book list available in the shop
+public_users.get("/", (req, res) => {
+  
+  // async callback style function
+  const getBooks = (callback) => {
+    setTimeout(() => {
+      callback(null, books); 
+    }, 0);
+  };
+
+  getBooks((err, result) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.send(JSON.stringify(result, null, 4));
+  });
+
 });
+
 
 // Get book details based on ISBN
-public_users.get("/isbn/:isbn", async (req, res) => {
-  try {
-    //Write your code here
-    const isbn = req.params.isbn;
+public_users.get("/isbn/:isbn", (req, res) => {
+  const isbn = req.params.isbn;
 
-    //creating route returning all books
-    const response = await axios.get("http://localhost:5000/");
+  axios
+    .get("http://localhost:5000/")
+    .then((response) => {
+      const book = response.data[isbn];
 
-    //Filter the book with matching isbn
-    const book = response.data[isbn];
-
-    if (book) {
-      res.send(JSON.stringify(book, null, 4));
-    } else {
-      res.status(404).send("Book not found");
-    }
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
+      if (book) {
+        res.send(JSON.stringify(book, null, 4));
+      } else {
+        res.status(404).send("Book not found");
+      }
+    })
+    .catch((err) => {
+      res.status(500).send(err.message);
+    });
 });
+
 
 // Get book details based on author
 public_users.get("/author/:author", async (req, res) => {
